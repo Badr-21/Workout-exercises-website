@@ -14,7 +14,6 @@ function SimilarTargetMuscle() {
          exercisesOption
       );
       setTargetMuscleExecises(similarTargetMuscleExercises);
-      console.log(similarTargetMuscleExercises);
    };
 
    useEffect(() => {

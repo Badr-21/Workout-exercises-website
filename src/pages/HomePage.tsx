@@ -8,7 +8,6 @@ function HomePage() {
    const location = useLocation();
    useEffect(() => {
       location.state = "";
-      console.log(location);
    });
    return (
       <motion.main

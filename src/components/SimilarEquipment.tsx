@@ -13,7 +13,6 @@ function SimilarEquipment() {
          exercisesOption
       );
       setEquipmentExercises(similarEquipmentExercises);
-      console.log(similarEquipmentExercises);
    };
 
    useEffect(() => {
