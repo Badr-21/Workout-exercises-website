@@ -9,6 +9,7 @@ function ExercisesPage() {
    const [exercises, setExercises] = useState<Exercise[] | []>([]);
    const [displayedExercises, setDisplyedExercises] = useState<Exercise[] | []>([]);
    const [search, setSearch] = useState(false);
+   const [changePage, setChangePage] = useState(false);
 
    return (
       <motion.main
@@ -29,11 +30,14 @@ function ExercisesPage() {
             displayedExercises={displayedExercises}
             search={search}
             setSearch={setSearch}
+            changePage={changePage}
+            setChangePage={setChangePage}
          />
          <Pagination
             exercises={exercises}
             setExercises={setExercises}
             setDisplyedExercises={setDisplyedExercises}
+            setChangePage={setChangePage}
          />
       </motion.main>
    );

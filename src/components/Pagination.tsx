@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
-import { SetDisplayedExercises } from "../types";
+import { PaginationPropsType } from "../types";
 
-function Pagination({ exercises, setExercises, setDisplyedExercises }: SetDisplayedExercises) {
-   //    const [currentCompanies, setCurrentCompanies] = useState(companies);
-
+function Pagination({ exercises, setDisplyedExercises, setChangePage }: PaginationPropsType) {
    const [itemOffset, setItemOffset] = useState(0);
    const itemsPerPage = 15;
    const endOffset = itemOffset + itemsPerPage;
@@ -16,17 +14,12 @@ function Pagination({ exercises, setExercises, setDisplyedExercises }: SetDispla
    const handlePageClick = (event: { selected: number }) => {
       const newOffset = (event.selected * itemsPerPage) % exercises.length;
       setItemOffset(newOffset);
+      setChangePage(true);
    };
 
    useEffect(() => {
       setDisplyedExercises(exercisesInPage);
    }, [endOffset, pageCount]);
-
-   // useEffect(() => {
-   //    window.scrollTo({
-   //       top: 0,
-   //    });
-   // });
 
    return (
       <section>

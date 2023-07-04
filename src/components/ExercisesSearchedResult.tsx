@@ -8,6 +8,8 @@ function ExercisesSearchedResult({
    displayedExercises,
    search,
    setSearch,
+   changePage,
+   setChangePage,
 }: ExercisesSearchedResultPropsType) {
    const resultRef = useRef<HTMLHeadingElement>(null);
 
@@ -51,6 +53,15 @@ function ExercisesSearchedResult({
       }
       setSearch(false);
    }, [search]);
+
+   useEffect(() => {
+      if (changePage) {
+         resultRef.current?.scrollIntoView({
+            behavior: "smooth",
+         });
+      }
+      setChangePage(false);
+   }, [changePage]);
 
    return (
       <section className="">
