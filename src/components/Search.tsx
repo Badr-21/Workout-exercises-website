@@ -1,18 +1,16 @@
 import { useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchData, exercisesOption } from "../utils/fetchData";
-import { Exercises } from "../types";
+import { searchPropsType } from "../types";
 import { Exercise } from "../types";
 
-function Search({ exercises, setExercises }: Exercises) {
-   const [search, setSearch] = useState(false);
+function Search({ setExercises, setSearch }: searchPropsType) {
    const [query, setQuery] = useState("");
-   const inputRef = useRef("");
+   const inputRef = useRef<HTMLInputElement | null>(null);
    const location = useLocation();
 
    const handleQuery = (event: React.ChangeEvent<HTMLInputElement>): void => {
       setQuery(event.target.value);
-      console.log(event.target.value);
    };
 
    const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
@@ -28,13 +26,16 @@ function Search({ exercises, setExercises }: Exercises) {
             exercise.equipment.toLowerCase().includes(query.toLowerCase()) ||
             exercise.bodyPart.toLowerCase().includes(query.toLowerCase())
       );
-      setQuery("");
+
       setExercises(searchedExercises);
       location.state = "";
-      console.log(inputRef.current.value);
+      setSearch(true);
+      setQuery("");
+      if (inputRef.current) inputRef.current.value = "";
    };
+
    return (
-      <section className="mb-40">
+      <section className="mb-20">
          <form className="flex border rounded-sm border-Platinum">
             <input
                type="text"
