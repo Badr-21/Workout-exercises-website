@@ -1,16 +1,15 @@
 import { useEffect, useRef } from "react";
 import { fetchData, exercisesOption } from "../utils/fetchData";
-import { DisplayedExercises } from "../types";
+import { ExercisesSearchedResultPropsType } from "../types";
 import { Link, useLocation } from "react-router-dom";
 
 function ExercisesSearchedResult({
-   exercises,
    setExercises,
    displayedExercises,
-}: //  query,
-//  setQuery,
-DisplayedExercises) {
-   const resultRef = useRef<React.MutableRefObject<undefined>>(null);
+   search,
+   setSearch,
+}: ExercisesSearchedResultPropsType) {
+   const resultRef = useRef<HTMLHeadingElement>(null);
 
    const location = useLocation();
 
@@ -20,27 +19,16 @@ DisplayedExercises) {
          exercisesOption
       );
       setExercises(allExercisesData);
-      scrollToEexercisesResult();
+      setSearch(true);
    };
 
    const fetchClickedCategoryData = async () => {
-      // const fetchClickedCategory = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const clickedCategoryExercises = await fetchData(
          `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${location.state.category}`,
          exercisesOption
       );
-      //  const target = event.target as HTMLButtonElement;
-      //  console.log(target.id);
       setExercises(clickedCategoryExercises);
-      console.log(clickedCategoryExercises);
-      scrollToEexercisesResult();
-   };
-
-   const scrollToEexercisesResult = () => {
-      window.scrollTo({
-         top: resultRef.current.offsetTop,
-         behavior: "smooth",
-      });
+      setSearch(true);
    };
 
    useEffect(() => {
@@ -55,13 +43,18 @@ DisplayedExercises) {
       }
    }, []);
 
-   //  useEffect(() => {
-   //     console.log(displayedExercises);
-   //  }, [displayedExercises]);
+   useEffect(() => {
+      if (search) {
+         resultRef.current?.scrollIntoView({
+            behavior: "smooth",
+         });
+      }
+      setSearch(false);
+   }, [search]);
 
    return (
       <section className="">
-         <h2 ref={resultRef} className="text-SafetyOrange text-2xl font-semibold mb-8">
+         <h2 ref={resultRef} className="text-SafetyOrange text-2xl font-semibold mb-12">
             Exercises results
          </h2>
          <div className="flex flex-wrap justify-between gap-y-14">

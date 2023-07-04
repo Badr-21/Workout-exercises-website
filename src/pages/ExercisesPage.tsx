@@ -8,7 +8,7 @@ import { useState } from "react";
 function ExercisesPage() {
    const [exercises, setExercises] = useState<Exercise[] | []>([]);
    const [displayedExercises, setDisplyedExercises] = useState<Exercise[] | []>([]);
-   // const [query, setQuery] = useState("");
+   const [search, setSearch] = useState(false);
 
    return (
       <motion.main
@@ -22,18 +22,13 @@ function ExercisesPage() {
          <h1 className="text-SafetyOrange font-bold text-4xl mb-16">
             Search for any exercise, body-part, or equipment, there are +1000 exercises.
          </h1>
-         <Search
-            exercises={exercises}
-            setExercises={setExercises}
-            // query={query}
-            // setQuery={setQuery}
-         />
+         <Search exercises={exercises} setExercises={setExercises} setSearch={setSearch} />
          <ExercisesSearchedResult
             exercises={exercises}
             setExercises={setExercises}
             displayedExercises={displayedExercises}
-            // query={query}
-            // setQuery={setQuery}
+            search={search}
+            setSearch={setSearch}
          />
          <Pagination
             exercises={exercises}
