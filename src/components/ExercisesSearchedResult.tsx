@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { fetchData, exercisesOption } from "../utils/fetchData";
 import { ExercisesSearchedResultPropsType } from "../types";
 import { Link, useLocation } from "react-router-dom";
+import { InfinitySpin } from "react-loader-spinner";
 
 function ExercisesSearchedResult({
    setExercises,
@@ -69,32 +70,36 @@ function ExercisesSearchedResult({
             Exercises results
          </h2>
          <div className="flex flex-wrap justify-between gap-y-14">
-            {displayedExercises.map((displayedExercise) => (
-               <Link
-                  key={displayedExercise.id}
-                  to={`exercise-details-page/${displayedExercise.id}`}
-                  state={{ displayedExercise: displayedExercise }}
-               >
-                  <div className="border-2 rounded-md border-SafetyOrange w-[23rem] bg-white hover:cursor-pointer hover:scale-110 duration-300">
-                     <img
-                        src={displayedExercise.gifUrl}
-                        alt={`${displayedExercise.name}gif`}
-                        className="mb-8"
-                     />
-                     <div className="flex gap-x-8 px-4 mb-8">
-                        <p className="bg-SafetyOrange text-EerieBlack font-semibold rounded-md p-2">
-                           {displayedExercise.bodyPart.toUpperCase()}
-                        </p>
-                        <p className="bg-SafetyOrange text-EerieBlack font-semibold rounded-md p-2">
-                           {displayedExercise.target.toUpperCase()}
+            {displayedExercises.length ? (
+               displayedExercises.map((displayedExercise) => (
+                  <Link
+                     key={displayedExercise.id}
+                     to={`exercise-details-page/${displayedExercise.id}`}
+                     state={{ displayedExercise: displayedExercise }}
+                  >
+                     <div className="border-2 rounded-md border-SafetyOrange w-[23rem] bg-white hover:cursor-pointer hover:scale-110 duration-300">
+                        <img
+                           src={displayedExercise.gifUrl}
+                           alt={`${displayedExercise.name}gif`}
+                           className="mb-8"
+                        />
+                        <div className="flex gap-x-8 px-4 mb-8">
+                           <p className="bg-SafetyOrange text-EerieBlack font-semibold rounded-md p-2">
+                              {displayedExercise.bodyPart.toUpperCase()}
+                           </p>
+                           <p className="bg-SafetyOrange text-EerieBlack font-semibold rounded-md p-2">
+                              {displayedExercise.target.toUpperCase()}
+                           </p>
+                        </div>
+                        <p className="text-EerieBlack font-bold text-lg px-4 mb-4">
+                           {displayedExercise.name.toUpperCase()}
                         </p>
                      </div>
-                     <p className="text-EerieBlack font-bold text-lg px-4 mb-4">
-                        {displayedExercise.name.toUpperCase()}
-                     </p>
-                  </div>
-               </Link>
-            ))}
+                  </Link>
+               ))
+            ) : (
+               <InfinitySpin color="#ff851b" />
+            )}
          </div>
       </section>
    );

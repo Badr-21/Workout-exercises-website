@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { fetchData, exercisesOption } from "../utils/fetchData";
 import { useState, useEffect } from "react";
 import { Exercise } from "../types";
+import { InfinitySpin } from "react-loader-spinner";
 
 function SimilarTargetMuscle() {
    const [targetMuscleExecises, setTargetMuscleExecises] = useState<Exercise[] | []>([]);
@@ -27,24 +28,28 @@ function SimilarTargetMuscle() {
          </h2>
          <div className="flex overflow-x-scroll hide-scroll-bar">
             <div className="flex flex-nowrap py-4 gap-x-8">
-               {targetMuscleExecises.map((targetMuscleExecise) => (
-                  <Link
-                     key={targetMuscleExecise.id}
-                     to={`/exercises-page/exercise-details-page/${targetMuscleExecise.id}`}
-                     state={{ displayedExercise: targetMuscleExecise }}
-                  >
-                     <div className="rounded-md w-[15rem] hover:cursor-pointer hover:scale-110 duration-300">
-                        <img
-                           src={targetMuscleExecise.gifUrl}
-                           alt={`${targetMuscleExecise.name}gif`}
-                           className="mb-4 rounded-md"
-                        />
-                        <p className="text-SafetyOrange font-bold text-lg px-4 mb-4">
-                           {targetMuscleExecise.name.toUpperCase()}
-                        </p>
-                     </div>
-                  </Link>
-               ))}
+               {targetMuscleExecises.length ? (
+                  targetMuscleExecises.map((targetMuscleExecise) => (
+                     <Link
+                        key={targetMuscleExecise.id}
+                        to={`/exercises-page/exercise-details-page/${targetMuscleExecise.id}`}
+                        state={{ displayedExercise: targetMuscleExecise }}
+                     >
+                        <div className="rounded-md w-[15rem] hover:cursor-pointer hover:scale-110 duration-300">
+                           <img
+                              src={targetMuscleExecise.gifUrl}
+                              alt={`${targetMuscleExecise.name}gif`}
+                              className="mb-4 rounded-md"
+                           />
+                           <p className="text-SafetyOrange font-bold text-lg px-4 mb-4">
+                              {targetMuscleExecise.name.toUpperCase()}
+                           </p>
+                        </div>
+                     </Link>
+                  ))
+               ) : (
+                  <InfinitySpin color="#ff851b" />
+               )}
             </div>
          </div>
       </section>
