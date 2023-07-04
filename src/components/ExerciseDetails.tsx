@@ -1,10 +1,23 @@
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 function ExerciseDetails() {
+   const sectionRef = useRef<HTMLElement>(null);
    const location = useLocation();
    const exercise = location.state.displayedExercise;
+
+   useEffect(() => {
+      sectionRef.current?.scrollIntoView({
+         behavior: "smooth",
+      });
+   }, [exercise.id]);
+
    return (
-      <section key={exercise.id} className="flex justify-evenly items-center my-[5rem]">
+      <section
+         ref={sectionRef}
+         key={exercise.id}
+         className="flex justify-evenly items-center my-[5rem]"
+      >
          <img
             src={exercise.gifUrl}
             alt={exercise.name}
