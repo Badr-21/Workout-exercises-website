@@ -25,16 +25,15 @@ export interface ExercisesSearchedResultPropsType extends Exercises {
    displayedExercises: Exercise[] | [];
    search: boolean;
    setSearch: React.Dispatch<React.SetStateAction<boolean>>;
+   changePage: boolean;
+   setChangePage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface SetDisplayedExercises extends Exercises {
+export interface PaginationPropsType extends Exercises {
    setDisplyedExercises: React.Dispatch<React.SetStateAction<Exercise[] | []>>;
+   setChangePage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface SearchComponent extends Exercises {
-   query: string;
-   setQuery: React.Dispatch<React.SetStateAction<string>>;
-}
 export interface Video {
    channelId: string;
    channelName: string;
