@@ -16,7 +16,7 @@ function HomePage() {
          exit={{
             opacity: 0,
          }}
-         className="px-16 py-4 bg-EerieBlack"
+         className="lg:px-16 md:px-8 px-4 py-4 bg-EerieBlack"
       >
          <Hero />
          <Categories />
