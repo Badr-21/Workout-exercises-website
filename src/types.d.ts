@@ -27,6 +27,7 @@ export interface ExercisesSearchedResultPropsType extends Exercises {
    setSearch: React.Dispatch<React.SetStateAction<boolean>>;
    changePage: boolean;
    setChangePage: React.Dispatch<React.SetStateAction<boolean>>;
+   query: string;
 }
 
 export interface PaginationPropsType extends Exercises {
@@ -68,4 +69,6 @@ export interface Videos {
 
 export interface searchPropsType extends Exercises {
    setSearch: React.Dispatch<React.SetStateAction<boolean>>;
+   query: string;
+   setQuery: React.Dispatch<React.SetStateAction<string>>;
 }
