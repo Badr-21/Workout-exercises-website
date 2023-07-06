@@ -3,7 +3,7 @@ import { Options } from "../types";
 export const exercisesOption = {
    method: "GET",
    headers: {
-      "X-RapidAPI-Key": `${import.meta.env.VITE_APP_API_KEY}`,
+      "X-RapidAPI-Key": import.meta.env.VITE_APP_API_KEY,
       "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
    },
 };
