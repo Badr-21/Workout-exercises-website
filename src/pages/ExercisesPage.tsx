@@ -9,6 +9,7 @@ function ExercisesPage() {
    const [exercises, setExercises] = useState<Exercise[] | []>([]);
    const [displayedExercises, setDisplyedExercises] = useState<Exercise[] | []>([]);
    const [search, setSearch] = useState(false);
+   const [query, setQuery] = useState("");
    const [changePage, setChangePage] = useState(false);
 
    return (
@@ -18,12 +19,18 @@ function ExercisesPage() {
          exit={{
             opacity: 0,
          }}
-         className="px-16 py-36 bg-EerieBlack"
+         className="lg:px-16 sm:px-8 px-4 lg:py-36 py-24 bg-EerieBlack"
       >
-         <h1 className="text-SafetyOrange font-bold text-4xl mb-16">
+         <h1 className="text-SafetyOrange lg:font-bold lg:text-[2rem] mb-16 font-semibold md:text-[1.8rem] text-[1.6rem]">
             Search for any exercise, body-part, or equipment, there are +1000 exercises.
          </h1>
-         <Search exercises={exercises} setExercises={setExercises} setSearch={setSearch} />
+         <Search
+            exercises={exercises}
+            setExercises={setExercises}
+            setSearch={setSearch}
+            query={query}
+            setQuery={setQuery}
+         />
          <ExercisesSearchedResult
             exercises={exercises}
             setExercises={setExercises}
@@ -32,6 +39,7 @@ function ExercisesPage() {
             setSearch={setSearch}
             changePage={changePage}
             setChangePage={setChangePage}
+            query={query}
          />
          <Pagination
             exercises={exercises}
