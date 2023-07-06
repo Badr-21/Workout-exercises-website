@@ -11,6 +11,7 @@ function ExercisesSearchedResult({
    setSearch,
    changePage,
    setChangePage,
+   query,
 }: ExercisesSearchedResultPropsType) {
    const resultRef = useRef<HTMLHeadingElement>(null);
 
@@ -69,7 +70,7 @@ function ExercisesSearchedResult({
          <h2 ref={resultRef} className="text-SafetyOrange text-2xl font-semibold mb-12">
             Exercises results
          </h2>
-         <div className="flex flex-wrap justify-between gap-y-14">
+         <div className="flex flex-wrap md:justify-between justify-center gap-x-4 gap-y-14">
             {displayedExercises.length ? (
                displayedExercises.map((displayedExercise) => (
                   <Link
@@ -77,7 +78,7 @@ function ExercisesSearchedResult({
                      to={`exercise-details-page/${displayedExercise.id}`}
                      state={{ displayedExercise: displayedExercise }}
                   >
-                     <div className="border-2 rounded-md border-SafetyOrange w-[23rem] bg-white hover:cursor-pointer hover:scale-110 duration-300">
+                     <div className="border-2 rounded-md border-SafetyOrange lg:w-[23rem] sm:w-[21rem] w-[16rem] bg-white hover:cursor-pointer hover:scale-110 duration-300">
                         <img
                            src={displayedExercise.gifUrl}
                            alt={`${displayedExercise.name}gif`}
@@ -97,6 +98,12 @@ function ExercisesSearchedResult({
                      </div>
                   </Link>
                ))
+            ) : query ? (
+               <div className="w-full flex justify-center mb-6">
+                  <p className="text-SafetyOrange md:font-semibold md:text-xl text-lg font-medium">
+                     Exercise not found
+                  </p>
+               </div>
             ) : (
                <InfinitySpin color="#ff851b" />
             )}
