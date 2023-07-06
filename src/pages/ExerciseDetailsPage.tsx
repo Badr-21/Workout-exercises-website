@@ -11,7 +11,7 @@ function ExerciseDetailsPage() {
          exit={{
             opacity: 0,
          }}
-         className="bg-EerieBlack px-16 py-8"
+         className="bg-EerieBlack lg:px-16 sm:px-8 px-4 py-8"
       >
          <ExerciseDetails />
          <YoutubeVideos />
