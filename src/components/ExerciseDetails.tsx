@@ -16,7 +16,7 @@ function ExerciseDetails() {
       <section
          ref={sectionRef}
          key={exercise.id}
-         className="flex justify-evenly items-center my-[5rem]"
+         className="flex lg:justify-around md:justify-between md:flex-row flex-col gap-y-8 items-center md:my-[5rem] my-[3rem]"
       >
          <img
             src={exercise.gifUrl}
@@ -24,19 +24,29 @@ function ExerciseDetails() {
             className="border-SafetyOrange border-2 w-[20rem]"
          />
          <div>
-            <p className="text-SafetyOrange font-bold text-xl mb-8">
-               Name: <span className="text-white font-semibold text-lg">{exercise.name}</span>
+            <p className="text-SafetyOrange sm:font-bold sm:text-xl mb-8 font-semibold text-lg">
+               Name:{" "}
+               <span className="text-white sm:font-semibold sm:text-lg font-medium text-base">
+                  {exercise.name}
+               </span>
             </p>
-            <p className="text-SafetyOrange font-bold text-xl mb-8">
+            <p className="text-SafetyOrange sm:font-bold sm:text-xl mb-8 font-semibold text-lg">
                Body-part:{" "}
-               <span className="text-white font-semibold text-lg">{exercise.bodyPart}</span>
+               <span className="text-white sm:font-semibold sm:text-lg font-medium text-base">
+                  {exercise.bodyPart}
+               </span>
             </p>
-            <p className="text-SafetyOrange font-bold text-xl mb-8">
-               Target: <span className="text-white font-semibold text-lg">{exercise.target}</span>
+            <p className="text-SafetyOrange sm:font-bold sm:text-xl mb-8 font-semibold text-lg">
+               Target:{" "}
+               <span className="text-white sm:font-semibold sm:text-lg font-medium text-base">
+                  {exercise.target}
+               </span>
             </p>
-            <p className="text-SafetyOrange font-bold text-xl mb-8">
+            <p className="text-SafetyOrange sm:font-bold sm:text-xl mb-8 font-semibold text-lg">
                Equipment:{" "}
-               <span className="text-white font-semibold text-lg">{exercise.equipment}</span>
+               <span className="text-white sm:font-semibold sm:text-lg font-medium text-base">
+                  {exercise.equipment}
+               </span>
             </p>
          </div>
       </section>
