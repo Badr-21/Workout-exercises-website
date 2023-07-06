@@ -1,11 +1,10 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchData, exercisesOption } from "../utils/fetchData";
 import { searchPropsType } from "../types";
 import { Exercise } from "../types";
 
-function Search({ setExercises, setSearch }: searchPropsType) {
-   const [query, setQuery] = useState("");
+function Search({ setExercises, setSearch, query, setQuery }: searchPropsType) {
    const inputRef = useRef<HTMLInputElement | null>(null);
    const location = useLocation();
 
@@ -14,6 +13,8 @@ function Search({ setExercises, setSearch }: searchPropsType) {
    };
 
    const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+      setExercises([]);
+      setQuery("");
       e.preventDefault();
       const exercisesData = await fetchData(
          "https://exercisedb.p.rapidapi.com/exercises",
@@ -26,11 +27,11 @@ function Search({ setExercises, setSearch }: searchPropsType) {
             exercise.equipment.toLowerCase().includes(query.toLowerCase()) ||
             exercise.bodyPart.toLowerCase().includes(query.toLowerCase())
       );
-
+      if (!searchedExercises.length) setQuery(query);
+      console.log(searchedExercises);
       setExercises(searchedExercises);
       location.state = "";
       setSearch(true);
-      setQuery("");
       if (inputRef.current) inputRef.current.value = "";
    };
 
