@@ -20,7 +20,9 @@ function Categories() {
    }, []);
    return (
       <section className="flex flex-col m-auto p-auto mb-16">
-         <h1 className="flex font-bold text-3xl text-SafetyOrange mb-8">Categories</h1>
+         <h1 className="flex lg:font-bold lg:text-3xl font-semibold md:text-2xl text-xl text-SafetyOrange md:mb-8 mb-4">
+            Categories
+         </h1>
          <div className="flex overflow-x-scroll hide-scroll-bar">
             <div className="flex flex-nowrap py-8">
                {categories.length ? (
@@ -33,7 +35,7 @@ function Categories() {
                            >
                               <div
                                  id={category}
-                                 className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col justify-center items-center gap-y-4"
+                                 className="md:w-64 md:h-64 w-52 h-52 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col justify-center items-center gap-y-4"
                               >
                                  <img
                                     id={category}
