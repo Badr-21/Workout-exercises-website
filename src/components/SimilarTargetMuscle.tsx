@@ -10,6 +10,7 @@ function SimilarTargetMuscle() {
    const exercise = location.state.displayedExercise;
 
    const FetchTargetMuscleExercisesData = async () => {
+      setTargetMuscleExecises([]);
       const similarTargetMuscleExercises = await fetchData(
          `https://exercisedb.p.rapidapi.com/exercises/target/${exercise.target}`,
          exercisesOption
@@ -23,7 +24,7 @@ function SimilarTargetMuscle() {
 
    return (
       <section className="flex flex-col m-auto p-auto mb-16">
-         <h2 className="flex font-bold text-3xl text-SafetyOrange mb-8">
+         <h2 className="flex lg:font-bold lg:text-3xl font-semibold md:text-2xl text-xl text-SafetyOrange mb-8">
             Similar target muscle exercises
          </h2>
          <div className="flex overflow-x-scroll hide-scroll-bar">
@@ -35,13 +36,13 @@ function SimilarTargetMuscle() {
                         to={`/exercises-page/exercise-details-page/${targetMuscleExecise.id}`}
                         state={{ displayedExercise: targetMuscleExecise }}
                      >
-                        <div className="rounded-md w-[15rem] hover:cursor-pointer hover:scale-110 duration-300">
+                        <div className="rounded-md md:w-[15rem] w-[12rem] hover:cursor-pointer hover:scale-110 duration-300">
                            <img
                               src={targetMuscleExecise.gifUrl}
                               alt={`${targetMuscleExecise.name}gif`}
                               className="mb-4 rounded-md"
                            />
-                           <p className="text-SafetyOrange font-bold text-lg px-4 mb-4">
+                           <p className="text-SafetyOrange sm:font-bold md:text-lg text-base font-semibold px-4 mb-4">
                               {targetMuscleExecise.name.toUpperCase()}
                            </p>
                         </div>
