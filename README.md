@@ -2,7 +2,7 @@
 
 Platinum Gym is a workout exercise website. It's my third portfolio project. It has +1000 exercises using data from [ExerciseDB api](https://www.exercisedb.io/).
 
-![Workout exercises website home page](https://github.com/Badr-21/Workout-exercises-website/blob/main/public/home-page.png)
+![Workout exercises website home page](https://github.com/Badr-21/Workout-exercises-website/blob/main/public/project-page.png)
 
 
 ## Usage
